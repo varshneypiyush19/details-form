@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    html {
+      overflow-y: scroll;
+      scroll-behavior: smooth !important;
+    }
+    body {
+      background-image: url(images/background\ image.jpg);
+      background-size: contain;
+      color: white;
+      font-weight: bolder;
+      font-family: "roboto", sans-serif;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+    }
+
+    div {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+    }
+    .main {
+      margin: 100px;
+    }
+    /* brand new style */
+    .form-control {
+      position: relative;
+      margin: 20px 0 40px;
+
+      /* background-color: transparent; */
+    }
+    .form-control input {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 3px #fff solid;
+      display: block;
+      width: 100%;
+      padding-top: 50px;
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #fff;
+    }
+    .form-control input:focus,
+    .form-control input:valid {
+      outline: none;
+      border-bottom-color: black;
+
+      background-color: transparent;
+    }
+
+    .form-control label {
+      position: absolute;
+      top: 35px;
+      left: 10;
+    }
+
+    .form-control label span {
+      display: inline-block;
+      font-size: 18px;
+      min-width: 5px;
+      transition: cubic-bezier(0.68, -0.55.265, 1.55);
+    }
+    .form-control input:focus + label span,
+    .form-control input:valid + label span {
+      color: black;
+      transform: translateY(-30px);
+
+      background-color: transparent;
+    }
+    ::placeholder {
+      color: black;
+      padding-left: 70px;
+      /* margin-bottom: 0px;
+      padding-bottom: 0px; */
+    }
+    .btn {
+      cursor: pointer;
+      display: inline-block;
+      width: 100%;
+      background-color: lightblue;
+      padding: 15px;
+      font-family: inherit;
+      font-size: 16px;
+      border: 0;
+      border-radius: 5px;
+    }
+    .btn:focus {
+      outline: none;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+  </style>
+  <body>
+    <!-- <p>
+      Want to be a part of our podcast ?Join us
+      <a style="cursor: pointer">here</a>
+    </p> -->
+
+    <div class="main">
+      <p
+        style="
+          text-align: center;
+          font-weight: bolder;
+          font-size: 30px;
+          color: white;
+          margin-bottom: 50px;
+          margin-top: 0;
+          text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+            0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 0 8px 0 #ccc, 0 9px 0 #ccc,
+            0 10px 0 #ccc, 0 11px 0 #ccc, 0 12px 0 #ccc,
+            0 20px 30px rgba(0, 0, 0, 0.5);
+        "
+      >
+        Fill your Details we will contact you soon !
+      </p>
+
+      <form method="POST" name="google-sheet">
+        <div class="form-control">
+          <input
+            type="text"
+            id="fname"
+            name="Name"
+            placeholder="eg: Raj"
+            required
+          />
+          <label for="name">Name</label>
+        </div>
+
+        <div class="form-control">
+          <input
+            type="text"
+            id="lname"
+            name="Email"
+            placeholder="eg: anatony@gmail.com"
+            required
+          />
+          <label for="email">Email</label>
+        </div>
+        <div class="form-control">
+          <input
+            type="text"
+            id="lname"
+            name="Company_Name"
+            placeholder="eg: ThoughtBistropvt.ltd."
+            required
+          />
+          <label for="mobile">Company Name</label>
+        </div>
+        <div class="form-control">
+          <input
+            type="text"
+            id="lname"
+            name="Mobile_Number"
+            placeholder="eg: 9998776655"
+            required
+          />
+          <label for="mobile">Phone Number</label>
+        </div>
+        <div class="form-control">
+          <input
+            type="text"
+            id="lname"
+            name="Question-1"
+            placeholder="eg: Demo answer 1"
+            required
+          />
+          <label for="mobile"> Demo question 1 :</label>
+        </div>
+        <div class="form-control">
+          <input
+            type="text"
+            id="lname"
+            name="Question-2"
+            placeholder="eg: Demo answer 2"
+            required
+          />
+          <label for="mobile">Demo question 2 : </label>
+        </div>
+        <div class="form-control">
+          <input
+            type="text"
+            id="lname"
+            name="Question-3"
+            placeholder="eg: Demo answer 3"
+            required
+          />
+          <label for="mobile">Demo question 3 :</label>
+        </div>
+
+        <input type="submit" value="Submit" name="submit" class="btn" />
+      </form>
+    </div>
+
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbzFEMtJcIA-JEkdOjNo0NtpJMl8LBZ3QeDU8k8R9t3ajgl1lMFfcYEH2kSUKLfz023puA/exec";
+      const form = document.forms["google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) =>
+            alert("Thanks for Contacting us..! We Will Contact You Soon...")
+          )
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+    <script>
+      const labels = document.querySelectorAll(".form-control label");
+      labels.forEach((label) => {
+        label.innerHTML = label.innerText
+          .split("")
+          .map(
+            (letter, idx) =>
+              `<span style="transition-delay: ${idx * 50}ms">${letter}</span>`
+          )
+          .join("");
+      });
+    </script>
+  </body>
+</html>
